@@ -178,6 +178,119 @@
             }
         }
 
+        .chapter-dropdown {
+            margin: 2rem 0;
+            position: relative;
+            z-index: 20;
+        }
+
+        .chapter-dropdown select {
+            width: 100%;
+            max-width: 300px;
+            padding: 1rem;
+            font-size: 1.1rem;
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(10px);
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            border-radius: 15px;
+            color: white;
+            outline: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .chapter-dropdown select:hover {
+            background: rgba(255, 255, 255, 0.25);
+            border-color: rgba(255, 255, 255, 0.5);
+            transform: translateY(-2px);
+        }
+
+        .chapter-dropdown select:focus {
+            border-color: rgba(255, 255, 255, 0.7);
+            box-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
+        }
+
+        .chapter-dropdown select option {
+            background: #667eea;
+            color: white;
+            padding: 1rem;
+        }
+
+        .chapter-content {
+            display: none;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 2rem;
+            margin: 2rem 0;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            animation: fadeIn 0.5s ease-in-out;
+        }
+
+        .chapter-content.active {
+            display: block;
+        }
+
+        .chapter-title {
+            font-size: 2rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(45deg, #fff, #f0f0f0);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .chapter-text {
+            font-size: 1.1rem;
+            line-height: 1.6;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+
+        .back-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.8rem 1.5rem;
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            border-radius: 25px;
+            color: white;
+            text-decoration: none;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            margin-top: 1rem;
+        }
+
+        .back-button:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .landing-view {
+            display: block;
+        }
+
+        .landing-view.hidden {
+            display: none;
+        }
+
         @media (max-width: 600px) {
             .container {
                 padding: 1rem;
@@ -185,6 +298,24 @@
             
             .audio-container {
                 padding: 1.5rem;
+            }
+
+            .chapter-dropdown select {
+                font-size: 1rem;
+                padding: 0.8rem;
+                max-width: 250px;
+            }
+
+            .chapter-content {
+                padding: 1.5rem;
+            }
+
+            .chapter-title {
+                font-size: 1.5rem;
+            }
+
+            .chapter-text {
+                font-size: 1rem;
             }
         }
     </style>
@@ -198,53 +329,274 @@
     </div>
 
     <div class="container">
-        <h1 class="hero-title">Queer Art for Care</h1>
-        <p class="subtitle">A Festival Celebrating Art, Community & Love</p>
-        
-        <div class="audio-container">
-            <h2 class="audio-title">🎧 Listen to Our Story</h2>
-            <audio id="audioPlayer" controls autoplay>
-                <source src="Chocolate - The Podast Ep.1 (Unsweetend Chocolate) .mp3" type="audio/mpeg">
-                Your browser does not support the audio element.
-            </audio>
-            <div class="play-indicator">
-                <div class="pulse"></div>
-                <span>Now playing</span>
+        <!-- Navigation Dropdown -->
+        <div class="chapter-dropdown">
+            <select id="chapterSelector">
+                <option value="landing">🏠 Festival Home</option>
+                <option value="chapter-1">📖 Chapter 1: The Beginning</option>
+                <option value="chapter-2">📖 Chapter 2: The Journey</option>
+                <option value="chapter-3">📖 Chapter 3: The Community</option>
+                <option value="chapter-4">📖 Chapter 4: The Future</option>
+            </select>
+        </div>
+
+        <!-- Landing View -->
+        <div id="landingView" class="landing-view">
+            <h1 class="hero-title">Queer Art for Care</h1>
+            <p class="subtitle">A Festival Celebrating Art, Community & Love</p>
+            
+            <div class="audio-container">
+                <h2 class="audio-title">🎧 Listen to Our Story</h2>
+                <audio id="audioPlayer" controls autoplay>
+                    <source src="Chocolate - The Podast Ep.1 (Unsweetend Chocolate) .mp3" type="audio/mpeg">
+                    Your browser does not support the audio element.
+                </audio>
+                <div class="play-indicator">
+                    <div class="pulse"></div>
+                    <span>Now playing</span>
+                </div>
             </div>
+        </div>
+
+        <!-- Chapter 1 Content -->
+        <div id="chapter-1" class="chapter-content">
+            <h2 class="chapter-title">Chapter 1: The Beginning</h2>
+            <p class="chapter-text">
+                Welcome to the Queer Art for Care festival, where creativity meets compassion. 
+                This chapter explores the origins of our festival - how a small group of artists 
+                and activists came together to create a space where queer voices could be heard 
+                and celebrated through art.
+            </p>
+            <p class="chapter-text">
+                Our journey began in 2020, during a time when the world needed healing more than ever. 
+                Art became our medicine, and community became our strength. This festival stands as 
+                a testament to the power of queer resilience and the transformative potential of 
+                creative expression.
+            </p>
+            <button class="back-button" onclick="navigateToChapter('landing')">
+                ← Back to Festival Home
+            </button>
+        </div>
+
+        <!-- Chapter 2 Content -->
+        <div id="chapter-2" class="chapter-content">
+            <h2 class="chapter-title">Chapter 2: The Journey</h2>
+            <p class="chapter-text">
+                Every artist has a story, and every story has its struggles and triumphs. 
+                In this chapter, we dive deep into the personal journeys of our featured artists. 
+                From discovering their identity to finding their voice, these stories remind us 
+                that we are never alone in our experiences.
+            </p>
+            <p class="chapter-text">
+                The journey of queer art is one of courage, vulnerability, and radical authenticity. 
+                It's about creating beauty from pain, finding strength in vulnerability, and building 
+                bridges where others see walls. Through paintings, sculptures, performances, and 
+                digital art, our artists share their truths with the world.
+            </p>
+            <button class="back-button" onclick="navigateToChapter('landing')">
+                ← Back to Festival Home
+            </button>
+        </div>
+
+        <!-- Chapter 3 Content -->
+        <div id="chapter-3" class="chapter-content">
+            <h2 class="chapter-title">Chapter 3: The Community</h2>
+            <p class="chapter-text">
+                Art doesn't exist in a vacuum - it thrives in community. This chapter celebrates 
+                the incredible network of support, collaboration, and mutual aid that makes our 
+                festival possible. From volunteers to allies, from local businesses to 
+                international supporters, our community is the heart of everything we do.
+            </p>
+            <p class="chapter-text">
+                The Queer Art for Care festival is more than just an event - it's a movement. 
+                It's about creating spaces where queer artists can flourish, where audiences can 
+                engage with challenging and beautiful work, and where care becomes a revolutionary 
+                act. Our community extends far beyond the festival grounds, creating ripples of 
+                change that transform lives.
+            </p>
+            <button class="back-button" onclick="navigateToChapter('landing')">
+                ← Back to Festival Home
+            </button>
+        </div>
+
+        <!-- Chapter 4 Content -->
+        <div id="chapter-4" class="chapter-content">
+            <h2 class="chapter-title">Chapter 4: The Future</h2>
+            <p class="chapter-text">
+                What comes next? The future of queer art is bright, bold, and beautifully complex. 
+                In this final chapter, we explore emerging trends, new voices, and the evolving 
+                landscape of queer artistic expression. From digital art to virtual reality, 
+                from traditional crafts to experimental performance, the future is ours to create.
+            </p>
+            <p class="chapter-text">
+                As we look ahead, we see a world where queer art is not marginalized but 
+                celebrated, where queer artists are not struggling but thriving, and where care 
+                is not an afterthought but the foundation of everything we do. The Queer Art 
+                for Care festival will continue to grow, evolve, and inspire future generations 
+                of artists and art lovers.
+            </p>
+            <button class="back-button" onclick="navigateToChapter('landing')">
+                ← Back to Festival Home
+            </button>
         </div>
     </div>
 
     <script>
-        // Try to autoplay the audio
-        const audio = document.getElementById('audioPlayer');
-        
-        // Modern browsers require user interaction for autoplay
-        // We'll attempt to play and handle any restrictions
+        // Navigation State Management
+        const NavigationState = {
+            LANDING: 'landing',
+            CHAPTER_1: 'chapter-1',
+            CHAPTER_2: 'chapter-2',
+            CHAPTER_3: 'chapter-3',
+            CHAPTER_4: 'chapter-4'
+        };
+
+        let currentView = NavigationState.LANDING;
+        const chapterSelector = document.getElementById('chapterSelector');
+        const landingView = document.getElementById('landingView');
+        const audioPlayer = document.getElementById('audioPlayer');
+        const playIndicator = document.querySelector('.play-indicator span');
+
+        // Initialize navigation
+        function initializeNavigation() {
+            chapterSelector.addEventListener('change', handleChapterChange);
+            updateView(NavigationState.LANDING);
+        }
+
+        // Handle chapter selection change
+        function handleChapterChange(event) {
+            const selectedChapter = event.target.value;
+            navigateToChapter(selectedChapter);
+        }
+
+        // Navigate to specific chapter
+        function navigateToChapter(chapter) {
+            // Update dropdown selection
+            chapterSelector.value = chapter;
+            
+            // Update view
+            updateView(chapter);
+            
+            // Update current state
+            currentView = chapter;
+            
+            // Handle URL hash for browser history
+            window.location.hash = chapter;
+        }
+
+        // Update view based on selected chapter
+        function updateView(chapter) {
+            // Hide all views first
+            hideAllViews();
+            
+            // Show selected view
+            switch(chapter) {
+                case NavigationState.LANDING:
+                    showLandingView();
+                    break;
+                case NavigationState.CHAPTER_1:
+                    showChapterView('chapter-1');
+                    break;
+                case NavigationState.CHAPTER_2:
+                    showChapterView('chapter-2');
+                    break;
+                case NavigationState.CHAPTER_3:
+                    showChapterView('chapter-3');
+                    break;
+                case NavigationState.CHAPTER_4:
+                    showChapterView('chapter-4');
+                    break;
+                default:
+                    showLandingView();
+            }
+        }
+
+        // Hide all views
+        function hideAllViews() {
+            landingView.classList.add('hidden');
+            document.querySelectorAll('.chapter-content').forEach(chapter => {
+                chapter.classList.remove('active');
+            });
+        }
+
+        // Show landing view
+        function showLandingView() {
+            landingView.classList.remove('hidden');
+            // Resume audio if it was paused
+            if (audioPlayer.paused) {
+                attemptAutoplay();
+            }
+        }
+
+        // Show chapter view
+        function showChapterView(chapterId) {
+            const chapterElement = document.getElementById(chapterId);
+            if (chapterElement) {
+                chapterElement.classList.add('active');
+                // Pause audio when viewing chapters (optional - can be changed)
+                // audioPlayer.pause();
+            }
+        }
+
+        // Handle browser back/forward buttons
+        function handleBrowserNavigation() {
+            const hash = window.location.hash.substring(1); // Remove #
+            if (hash && Object.values(NavigationState).includes(hash)) {
+                navigateToChapter(hash);
+            } else {
+                navigateToChapter(NavigationState.LANDING);
+            }
+        }
+
+        // Audio autoplay functionality
         function attemptAutoplay() {
-            audio.play().then(() => {
+            audioPlayer.play().then(() => {
                 console.log('Audio autoplay started successfully');
+                if (playIndicator) {
+                    playIndicator.textContent = 'Now playing';
+                }
             }).catch(error => {
                 console.log('Autoplay was prevented:', error);
                 // Show a user-friendly message if autoplay is blocked
-                const indicator = document.querySelector('.play-indicator span');
-                indicator.textContent = 'Tap to play';
+                if (playIndicator) {
+                    playIndicator.textContent = 'Tap to play';
+                }
                 
                 // Add click listener to start playback on user interaction
                 document.addEventListener('click', function playOnce() {
-                    audio.play();
-                    indicator.textContent = 'Now playing';
+                    audioPlayer.play();
+                    if (playIndicator) {
+                        playIndicator.textContent = 'Now playing';
+                    }
                     document.removeEventListener('click', playOnce);
                 }, { once: true });
             });
         }
 
-        // Attempt autoplay when page loads
-        window.addEventListener('load', attemptAutoplay);
+        // Initialize everything when page loads
+        window.addEventListener('load', () => {
+            initializeNavigation();
+            handleBrowserNavigation(); // Handle initial hash
+            attemptAutoplay();
+        });
 
-        // Also try on visibility change (in case tab becomes active)
+        // Handle browser back/forward
+        window.addEventListener('popstate', handleBrowserNavigation);
+
+        // Handle hash change
+        window.addEventListener('hashchange', handleBrowserNavigation);
+
+        // Also try autoplay on visibility change (in case tab becomes active)
         document.addEventListener('visibilitychange', () => {
-            if (!document.hidden && audio.paused) {
+            if (!document.hidden && currentView === NavigationState.LANDING && audioPlayer.paused) {
                 attemptAutoplay();
+            }
+        });
+
+        // Keyboard navigation support
+        document.addEventListener('keydown', (event) => {
+            if (event.key === 'Escape' && currentView !== NavigationState.LANDING) {
+                navigateToChapter(NavigationState.LANDING);
             }
         });
     </script>
