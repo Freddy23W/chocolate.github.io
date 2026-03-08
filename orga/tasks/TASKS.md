@@ -15,5 +15,6 @@ Status values: `backlog`, `active`, `done`, `future`.
 | T-007 | GitHub Pages deployment            | done     | orga/tasks/active/T-007-2025-03-08-github-deployment/       |
 | T-008 | Chapter-specific audio files       | done     | orga/tasks/active/T-008-2025-03-08-chapter-audio/           |
 | T-010 | Chapter audio play buttons          | done     | orga/tasks/active/T-010-2025-03-08-audio-play-buttons/      |
-| T-011 | Content and navigation corrections   | active   | orga/tasks/active/T-011-2025-03-08-content-corrections/     |
+| T-011 | Content and navigation corrections   | done     | orga/tasks/active/T-011-2025-03-08-content-corrections/     |
+| T-012 | Chapter navigation and audio enhancements | active   | orga/tasks/active/T-012-2025-03-08-chapter-enhancements/     |
 | T-009 | Audio optimization                 | future   | orga/tasks/future/T-009-YYYY-MM-DD-audio-optimization/      |

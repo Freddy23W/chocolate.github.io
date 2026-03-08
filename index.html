@@ -467,34 +467,16 @@
         <!-- Navigation Dropdown -->
         <div class="chapter-dropdown">
             <select id="chapterSelector">
-                <option value="landing">🏠 Home</option>
                 <option value="chapter-1">📖 Dear Tomorrow</option>
                 <option value="chapter-2">📖 The Black Epiphany</option>
                 <option value="chapter-3">📖 Taste the Dark</option>
-                <option value="chapter-4">📖 Remember Me</option>
+                <option value="chapter-4">📖 Remember Me, Please</option>
             </select>
         </div>
 
-        <!-- Landing View -->
-        <div id="landingView" class="landing-view">
-            <h1 class="hero-title">Chocolate: The Listening Space</h1>
-            <p class="subtitle">A Festival Celebrating Art, Community & Love</p>
-            
-            <div class="audio-container">
-                <h2 class="audio-title">🎧 Listen to Our Story</h2>
-                <audio id="audioPlayer" controls>
-                    <source src="Chocolate - The Podast Ep.1 (Unsweetend Chocolate) .mp3" type="audio/mpeg">
-                    Your browser does not support the audio element.
-                </audio>
-                <div class="play-indicator">
-                    <div class="pulse"></div>
-                    <span>Ready to play</span>
-                </div>
-            </div>
-        </div>
-
         <!-- Chapter 1 Content -->
-        <div id="chapter-1" class="chapter-content">
+        <div id="chapter-1" class="chapter-content active">
+            <h1 class="hero-title">Chocolate: The Listening Space</h1>
             <h2 class="chapter-title">Dear Tomorrow</h2>
             <p class="chapter-text">
                 Dear Tomorrow begins at the origin: childhood. Written as a love letter to Black queer children, it offers tenderness in a world that often attempts to define and limit them before they can define themselves. The piece acknowledges how societies construct categories that quietly shape a life's possibilities.
@@ -509,13 +491,11 @@
                     <span>Ready to play</span>
                 </div>
             </div>
-            <button class="back-button" onclick="navigateToChapter('landing')">
-                ← Back to Festival Home
-            </button>
         </div>
 
         <!-- Chapter 2 Content -->
         <div id="chapter-2" class="chapter-content">
+            <h1 class="hero-title">Chocolate: The Listening Space</h1>
             <h2 class="chapter-title">The Black Epiphany</h2>
             <p class="chapter-text">
                 The Black Epiphany explores the moment of awakening when many Black individuals first recognise the inequalities embedded within society. This realisation—often experienced at a young age—brings with it a complex mix of confusion, anger, and clarity.
@@ -530,13 +510,14 @@
                     <span>Ready to play</span>
                 </div>
             </div>
-            <button class="back-button" onclick="navigateToChapter('landing')">
-                ← Back to Festival Home
+            <button class="back-button" onclick="navigateToChapter('chapter-1')">
+                ← Previous Chapter
             </button>
         </div>
 
         <!-- Chapter 3 Content -->
         <div id="chapter-3" class="chapter-content">
+            <h1 class="hero-title">Chocolate: The Listening Space</h1>
             <h2 class="chapter-title">Taste the Dark</h2>
             <p class="chapter-text">
                 Taste the Dark reflects on the sexual liberation of Black queer bodies and the tensions that exist within spaces of desire. In nightlife, techno, and underground scenes, visibility can bring both celebration and objectification.
@@ -551,14 +532,15 @@
                     <span>Ready to play</span>
                 </div>
             </div>
-            <button class="back-button" onclick="navigateToChapter('landing')">
-                ← Back to Festival Home
+            <button class="back-button" onclick="navigateToChapter('chapter-2')">
+                ← Previous Chapter
             </button>
         </div>
 
         <!-- Chapter 4 Content -->
         <div id="chapter-4" class="chapter-content">
-            <h2 class="chapter-title">Remember Me</h2>
+            <h1 class="hero-title">Chocolate: The Listening Space</h1>
+            <h2 class="chapter-title">Remember Me, Please</h2>
             <p class="chapter-text">
                 Remember Me looks toward legacy and the future of Black queerness. It asks what remains after a life is lived and what messages we might hope to leave behind.
             </p>
@@ -572,8 +554,8 @@
                     <span>Ready to play</span>
                 </div>
             </div>
-            <button class="back-button" onclick="navigateToChapter('landing')">
-                ← Back to Festival Home
+            <button class="back-button" onclick="navigateToChapter('chapter-3')">
+                ← Previous Chapter
             </button>
         </div>
     </div>
@@ -581,7 +563,6 @@
     <script>
         // Navigation State Management
         const NavigationState = {
-            LANDING: 'landing',
             CHAPTER_1: 'chapter-1',
             CHAPTER_2: 'chapter-2',
             CHAPTER_3: 'chapter-3',
@@ -590,23 +571,28 @@
 
         // Audio file mapping for different chapters
         const audioFiles = {
-            'landing': 'Chocolate - The Podast Ep.1 (Unsweetend Chocolate) .mp3',
             'chapter-1': 'Chapter 1- Dear Tomorrow, .mp3',
             'chapter-2': 'Chapter 2- The Black Epiphany .mp3',
             'chapter-3': 'Chapter 3- Taste the Dark .mp3',
             'chapter-4': 'Chapter 4 - Remember Me, Please. .mp3'
         };
 
-        let currentView = NavigationState.LANDING;
+        let currentView = NavigationState.CHAPTER_1;
         const chapterSelector = document.getElementById('chapterSelector');
-        const landingView = document.getElementById('landingView');
         const audioPlayer = document.getElementById('audioPlayer');
         const playIndicator = document.querySelector('.play-indicator span');
 
         // Initialize navigation
         function initializeNavigation() {
             chapterSelector.addEventListener('change', handleChapterChange);
-            updateView(NavigationState.LANDING);
+            updateView(NavigationState.CHAPTER_1);
+        }
+
+        // Get previous chapter for back navigation
+        function getPreviousChapter(currentChapter) {
+            const chapterOrder = ['chapter-1', 'chapter-2', 'chapter-3', 'chapter-4'];
+            const currentIndex = chapterOrder.indexOf(currentChapter);
+            return currentIndex > 0 ? chapterOrder[currentIndex - 1] : null;
         }
 
         // Switch audio source based on current view
@@ -646,9 +632,9 @@
                 console.log(`Switched to audio: ${audioSource}`);
             } else {
                 console.error(`Audio file not found for chapter: ${chapterId}`);
-                // Fallback to landing page audio
-                if (audioPlayer && audioFiles['landing']) {
-                    audioPlayer.src = audioFiles['landing'];
+                // Fallback to Chapter 1 audio
+                if (audioPlayer && audioFiles['chapter-1']) {
+                    audioPlayer.src = audioFiles['chapter-1'];
                     audioPlayer.load();
                     if (playIndicator) {
                         playIndicator.textContent = 'Default audio loaded';
@@ -685,9 +671,6 @@
             
             // Show selected view
             switch(chapter) {
-                case NavigationState.LANDING:
-                    showLandingView();
-                    break;
                 case NavigationState.CHAPTER_1:
                     showChapterView('chapter-1');
                     break;
@@ -701,23 +684,15 @@
                     showChapterView('chapter-4');
                     break;
                 default:
-                    showLandingView();
+                    showChapterView('chapter-1');
             }
         }
 
         // Hide all views
         function hideAllViews() {
-            landingView.classList.add('hidden');
             document.querySelectorAll('.chapter-content').forEach(chapter => {
                 chapter.classList.remove('active');
             });
-        }
-
-        // Show landing view
-        function showLandingView() {
-            landingView.classList.remove('hidden');
-            // Switch to landing page audio
-            switchAudio('landing');
         }
 
         // Show chapter view
@@ -736,7 +711,7 @@
             if (hash && Object.values(NavigationState).includes(hash)) {
                 navigateToChapter(hash);
             } else {
-                navigateToChapter(NavigationState.LANDING);
+                navigateToChapter(NavigationState.CHAPTER_1);
             }
         }
 
@@ -793,15 +768,15 @@
 
         // Handle visibility change (autoplay disabled)
         document.addEventListener('visibilitychange', () => {
-            if (!document.hidden && currentView === NavigationState.LANDING && audioPlayer.paused) {
+            if (!document.hidden && currentView === NavigationState.CHAPTER_1 && audioPlayer.paused) {
                 // Autoplay disabled - user must manually start audio
             }
         });
 
         // Keyboard navigation support
         document.addEventListener('keydown', (event) => {
-            if (event.key === 'Escape' && currentView !== NavigationState.LANDING) {
-                navigateToChapter(NavigationState.LANDING);
+            if (event.key === 'Escape' && currentView !== NavigationState.CHAPTER_1) {
+                navigateToChapter(NavigationState.CHAPTER_1);
             }
         });
     </script>

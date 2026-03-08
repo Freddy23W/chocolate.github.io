@@ -55,24 +55,36 @@
 | T-010 | Chapter audio play buttons | done | orga/tasks/active/T-010-2025-03-08-audio-play-buttons/ |
 | T-009 | Audio optimization | future | orga/tasks/future/T-009-YYYY-MM-DD-audio-optimization/ |
 
-## Phase 5: Content & Navigation Corrections (Current)
-- **P5.1**: Fix Chapter 4 title consistency (add "Please")
-- **P5.2**: Remove Home/Landing page, make Chapter 1 default
-- **P5.3**: Add consistent page title to all chapter pages
-- **P5.4**: Update navigation flow (Chapter 1 → Chapter 2 → Chapter 3 → Chapter 4)
-- **P5.5**: Update back button destinations
+## Phase 5: Content & Navigation Corrections ✅ COMPLETED
+- **P5.1**: Fix Chapter 4 title consistency (add "Please") ✅
+- **P5.2**: Remove Home/Landing page, make Chapter 1 default ✅
+- **P5.3**: Add consistent page title to all chapter pages ✅
+- **P5.4**: Update navigation flow (Chapter 1 → Chapter 2 → Chapter 3 → Chapter 4) ✅
+- **P5.5**: Update back button destinations ✅
 
 ### Phase 5 Tasks
 | Task ID | Title | Status | Folder |
 |---------|-------|--------|---------|
-| T-011 | Content and navigation corrections | active | orga/tasks/active/T-011-2025-03-08-content-corrections/ |
+| T-011 | Content and navigation corrections | done | orga/tasks/active/T-011-2025-03-08-content-corrections/ |
 
-## Phase 6: Production Ready (Future)
-- **P6.1**: Performance optimization
-- **P6.2**: Accessibility enhancements
-- **P6.3**: Cross-browser testing
-- **P6.4**: Analytics integration (optional)
-- **P6.5**: Content updates workflow
+## Phase 6: Chapter Navigation and Audio Enhancements (Current)
+- **P6.1**: Update chapter subtitles to include chapter numbers
+- **P6.2**: Add functional audio player controls to all chapters
+- **P6.3**: Implement "Next Chapter" navigation buttons
+- **P6.4**: Enhance bidirectional navigation flow
+- **P6.5**: Test audio playback with enhanced navigation
+
+### Phase 6 Tasks
+| Task ID | Title | Status | Folder |
+|---------|-------|--------|---------|
+| T-012 | Chapter navigation and audio enhancements | active | orga/tasks/active/T-012-2025-03-08-chapter-enhancements/ |
+
+## Phase 7: Production Ready (Future)
+- **P7.1**: Performance optimization
+- **P7.2**: Accessibility enhancements
+- **P7.3**: Cross-browser testing
+- **P7.4**: Analytics integration (optional)
+- **P7.5**: Content updates workflow
 
 ## Milestones
 
@@ -104,12 +116,19 @@
 - Audio loading optimization
 - Performance improvements
 
-### Version 1.3 (Content & Navigation Corrections) - Current Target
+### Version 1.3 (Content & Navigation Corrections) ✅ COMPLETED
 - Chapter 4 title consistency ("Remember Me, Please")
 - Remove Home/Landing page, start with Chapter 1
 - Consistent page titles across all chapters
 - Improved navigation flow
 - Back button corrections
+
+### Version 1.4 (Chapter Navigation and Audio Enhancements) - Current Target
+- Chapter subtitles with numbers ("Chapter 1: Dear Tomorrow")
+- Functional audio player controls in all chapters
+- "Next Chapter" navigation buttons
+- Bidirectional navigation flow
+- Enhanced audio playback experience
 
 ## Dependencies
 - None external (self-contained)
@@ -126,9 +145,9 @@
 - **Mitigation**: Step-by-step implementation, testing at each stage
 
 ## Current Issues to Address
-1. **Chapter 4 title**: Should be "Remember Me, Please" (currently "Remember Me")
-2. **Chapter 4 dropdown**: Should be "Remember Me, Please" (currently "Remember Me")
-3. **Default page**: Should start with Chapter 1 (currently starts with "Home")
-4. **Page titles**: "Chocolate: The Listening Space" should appear on all pages
-5. **Navigation flow**: Should be Chapter 1 → Chapter 2 → Chapter 3 → Chapter 4
-6. **Back buttons**: Should navigate to previous chapter, not home
+1. **Chapter subtitles**: Should include chapter numbers ("Chapter 1: Dear Tomorrow" instead of just "Dear Tomorrow")
+2. **Audio containers**: Missing audio player controls (only have play indicators, no actual audio elements)
+3. **Next buttons**: Only "Previous Chapter" buttons exist, need "Next Chapter" buttons for easier navigation
+4. **Bidirectional navigation**: Need both previous and next buttons for chapters 2-3
+5. **Audio playback**: Audio controls need to be functional with chapter switching
+6. **Navigation flow**: Enhanced navigation with both directions
