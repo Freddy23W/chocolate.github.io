@@ -504,13 +504,9 @@
             </p>
             <div class="audio-container">
                 <h2 class="audio-title">🎧 Listen to Chapter Audio</h2>
-                <audio id="audioPlayer" controls>
-                    <source src="Chocolate - The Podast Ep.1 (Unsweetend Chocolate) .mp3" type="audio/mpeg">
-                    Your browser does not support the audio element.
-                </audio>
                 <div class="play-indicator">
                     <div class="pulse"></div>
-                    <span>Now playing</span>
+                    <span>Ready to play</span>
                 </div>
             </div>
             <button class="back-button" onclick="navigateToChapter('landing')">
@@ -529,13 +525,9 @@
             </p>
             <div class="audio-container">
                 <h2 class="audio-title">🎧 Listen to Chapter Audio</h2>
-                <audio id="audioPlayer" controls>
-                    <source src="Chocolate - The Podast Ep.1 (Unsweetend Chocolate) .mp3" type="audio/mpeg">
-                    Your browser does not support the audio element.
-                </audio>
                 <div class="play-indicator">
                     <div class="pulse"></div>
-                    <span>Now playing</span>
+                    <span>Ready to play</span>
                 </div>
             </div>
             <button class="back-button" onclick="navigateToChapter('landing')">
@@ -554,13 +546,9 @@
             </p>
             <div class="audio-container">
                 <h2 class="audio-title">🎧 Listen to Chapter Audio</h2>
-                <audio id="audioPlayer" controls>
-                    <source src="Chocolate - The Podast Ep.1 (Unsweetend Chocolate) .mp3" type="audio/mpeg">
-                    Your browser does not support the audio element.
-                </audio>
                 <div class="play-indicator">
                     <div class="pulse"></div>
-                    <span>Now playing</span>
+                    <span>Ready to play</span>
                 </div>
             </div>
             <button class="back-button" onclick="navigateToChapter('landing')">
@@ -579,13 +567,9 @@
             </p>
             <div class="audio-container">
                 <h2 class="audio-title">🎧 Listen to Chapter Audio</h2>
-                <audio id="audioPlayer" controls>
-                    <source src="Chocolate - The Podast Ep.1 (Unsweetend Chocolate) .mp3" type="audio/mpeg">
-                    Your browser does not support the audio element.
-                </audio>
                 <div class="play-indicator">
                     <div class="pulse"></div>
-                    <span>Now playing</span>
+                    <span>Ready to play</span>
                 </div>
             </div>
             <button class="back-button" onclick="navigateToChapter('landing')">
@@ -604,6 +588,15 @@
             CHAPTER_4: 'chapter-4'
         };
 
+        // Audio file mapping for different chapters
+        const audioFiles = {
+            'landing': 'Chocolate - The Podast Ep.1 (Unsweetend Chocolate) .mp3',
+            'chapter-1': 'Chapter 1- Dear Tomorrow, .mp3',
+            'chapter-2': 'Chapter 2- The Black Epiphany .mp3',
+            'chapter-3': 'Chapter 3- Taste the Dark .mp3',
+            'chapter-4': 'Chapter 4 - Remember Me, Please. .mp3'
+        };
+
         let currentView = NavigationState.LANDING;
         const chapterSelector = document.getElementById('chapterSelector');
         const landingView = document.getElementById('landingView');
@@ -614,6 +607,54 @@
         function initializeNavigation() {
             chapterSelector.addEventListener('change', handleChapterChange);
             updateView(NavigationState.LANDING);
+        }
+
+        // Switch audio source based on current view
+        function switchAudio(chapterId) {
+            const audioSource = audioFiles[chapterId];
+            if (audioSource && audioPlayer) {
+                // Stop current audio
+                audioPlayer.pause();
+                audioPlayer.currentTime = 0;
+                
+                // Update play indicator to loading state
+                if (playIndicator) {
+                    playIndicator.textContent = 'Loading...';
+                }
+                
+                // Update audio source
+                audioPlayer.src = audioSource;
+                audioPlayer.load(); // Reload with new source
+                
+                // Add loading event listener
+                audioPlayer.addEventListener('canplay', function handleCanPlay() {
+                    if (playIndicator) {
+                        playIndicator.textContent = 'Ready to play';
+                    }
+                    audioPlayer.removeEventListener('canplay', handleCanPlay);
+                }, { once: true });
+                
+                // Add error handling
+                audioPlayer.addEventListener('error', function handleError() {
+                    console.error(`Failed to load audio: ${audioSource}`);
+                    if (playIndicator) {
+                        playIndicator.textContent = 'Audio loading failed';
+                    }
+                    audioPlayer.removeEventListener('error', handleError);
+                }, { once: true });
+                
+                console.log(`Switched to audio: ${audioSource}`);
+            } else {
+                console.error(`Audio file not found for chapter: ${chapterId}`);
+                // Fallback to landing page audio
+                if (audioPlayer && audioFiles['landing']) {
+                    audioPlayer.src = audioFiles['landing'];
+                    audioPlayer.load();
+                    if (playIndicator) {
+                        playIndicator.textContent = 'Default audio loaded';
+                    }
+                }
+            }
         }
 
         // Handle chapter selection change
@@ -675,12 +716,8 @@
         // Show landing view
         function showLandingView() {
             landingView.classList.remove('hidden');
-            // Reset audio when returning to landing page
-            audioPlayer.currentTime = 0;
-            // Do not autoplay - user must manually start audio
-            if (playIndicator) {
-                playIndicator.textContent = 'Ready to play';
-            }
+            // Switch to landing page audio
+            switchAudio('landing');
         }
 
         // Show chapter view
@@ -688,12 +725,8 @@
             const chapterElement = document.getElementById(chapterId);
             if (chapterElement) {
                 chapterElement.classList.add('active');
-                // Stop audio when switching chapters to prevent multiple audio playing
-                audioPlayer.pause();
-                audioPlayer.currentTime = 0;
-                if (playIndicator) {
-                    playIndicator.textContent = 'Audio paused';
-                }
+                // Switch to chapter-specific audio
+                switchAudio(chapterId);
             }
         }
 
