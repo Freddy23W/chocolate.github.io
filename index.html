@@ -259,23 +259,47 @@
             display: inline-flex;
             align-items: center;
             gap: 0.5rem;
-            padding: 0.8rem 1.5rem;
-            background: rgba(255, 255, 255, 0.25);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.4);
-            border-radius: 25px;
+            background: rgba(255, 255, 255, 0.2);
+            border: 2px solid rgba(255, 255, 255, 0.4);
             color: white;
-            text-decoration: none;
-            font-size: 1rem;
-            transition: all 0.3s ease;
+            padding: 0.8rem 1.5rem;
+            border-radius: 15px;
             cursor: pointer;
+            font-size: 1rem;
+            min-height: 44px; /* Touch target size */
+            transition: all 0.3s ease;
             margin-top: 1rem;
         }
 
-        .back-button:hover {
+        .next-button {
+            background: rgba(255, 255, 255, 0.2);
+            border: 2px solid rgba(255, 255, 255, 0.4);
+            color: white;
+            padding: 0.8rem 1.5rem;
+            border-radius: 15px;
+            cursor: pointer;
+            font-size: 1rem;
+            min-height: 44px; /* Touch target size */
+            transition: all 0.3s ease;
+        }
+
+        .navigation-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin: 1rem 0;
+        }
+
+        .back-button:hover, .next-button:hover {
             background: rgba(255, 255, 255, 0.35);
             transform: translateY(-2px);
             box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .back-button:focus, .next-button:focus {
+            border-color: rgba(255, 255, 255, 0.8);
+            box-shadow: 0 0 20px rgba(255, 255, 255, 0.4);
+            outline: none;
         }
 
         @keyframes fadeIn {
@@ -372,18 +396,23 @@
                 margin-bottom: 1.5rem;
             }
 
-            .back-button {
-                padding: 0.8rem 1.5rem;
+            .back-button, .next-button {
+                padding: 0.8rem 1rem;
                 font-size: 1rem;
-                min-height: 44px; /* Touch target size */
+                min-height: 44px;
                 background: rgba(255, 255, 255, 0.3);
-                border: 1px solid rgba(255, 255, 255, 0.5);
-                border-radius: 25px;
-                margin-top: 1rem;
+                border: 2px solid rgba(255, 255, 255, 0.6);
+                border-radius: 15px;
             }
 
-            .back-button:hover {
+            .navigation-buttons {
+                gap: 0.5rem;
+                flex-wrap: wrap;
+            }
+
+            .back-button:hover, .next-button:hover {
                 background: rgba(255, 255, 255, 0.4);
+                border-color: rgba(255, 255, 255, 0.8);
             }
 
             /* Mobile audio controls optimization */
@@ -477,7 +506,7 @@
         <!-- Chapter 1 Content -->
         <div id="chapter-1" class="chapter-content active">
             <h1 class="hero-title">Chocolate: The Listening Space</h1>
-            <h2 class="chapter-title">Dear Tomorrow</h2>
+            <h2 class="chapter-title">Chapter 1: Dear Tomorrow</h2>
             <p class="chapter-text">
                 Dear Tomorrow begins at the origin: childhood. Written as a love letter to Black queer children, it offers tenderness in a world that often attempts to define and limit them before they can define themselves. The piece acknowledges how societies construct categories that quietly shape a life's possibilities.
             </p>
@@ -486,17 +515,24 @@
             </p>
             <div class="audio-container">
                 <h2 class="audio-title">🎧 Listen to Chapter Audio</h2>
+                <audio id="audioPlayer" controls>
+                    <source src="Chapter 1- Dear Tomorrow, .mp3" type="audio/mpeg">
+                    Your browser does not support the audio element.
+                </audio>
                 <div class="play-indicator">
                     <div class="pulse"></div>
                     <span>Ready to play</span>
                 </div>
             </div>
+            <button class="next-button" onclick="navigateToChapter('chapter-2')">
+                Next Chapter →
+            </button>
         </div>
 
         <!-- Chapter 2 Content -->
         <div id="chapter-2" class="chapter-content">
             <h1 class="hero-title">Chocolate: The Listening Space</h1>
-            <h2 class="chapter-title">The Black Epiphany</h2>
+            <h2 class="chapter-title">Chapter 2: The Black Epiphany</h2>
             <p class="chapter-text">
                 The Black Epiphany explores the moment of awakening when many Black individuals first recognise the inequalities embedded within society. This realisation—often experienced at a young age—brings with it a complex mix of confusion, anger, and clarity.
             </p>
@@ -505,20 +541,29 @@
             </p>
             <div class="audio-container">
                 <h2 class="audio-title">🎧 Listen to Chapter Audio</h2>
+                <audio id="audioPlayer" controls>
+                    <source src="Chapter 2- The Black Epiphany .mp3" type="audio/mpeg">
+                    Your browser does not support the audio element.
+                </audio>
                 <div class="play-indicator">
                     <div class="pulse"></div>
                     <span>Ready to play</span>
                 </div>
             </div>
-            <button class="back-button" onclick="navigateToChapter('chapter-1')">
-                ← Previous Chapter
-            </button>
+            <div class="navigation-buttons">
+                <button class="back-button" onclick="navigateToChapter('chapter-1')">
+                    ← Previous Chapter
+                </button>
+                <button class="next-button" onclick="navigateToChapter('chapter-3')">
+                    Next Chapter →
+                </button>
+            </div>
         </div>
 
         <!-- Chapter 3 Content -->
         <div id="chapter-3" class="chapter-content">
             <h1 class="hero-title">Chocolate: The Listening Space</h1>
-            <h2 class="chapter-title">Taste the Dark</h2>
+            <h2 class="chapter-title">Chapter 3: Taste the Dark</h2>
             <p class="chapter-text">
                 Taste the Dark reflects on the sexual liberation of Black queer bodies and the tensions that exist within spaces of desire. In nightlife, techno, and underground scenes, visibility can bring both celebration and objectification.
             </p>
@@ -527,20 +572,29 @@
             </p>
             <div class="audio-container">
                 <h2 class="audio-title">🎧 Listen to Chapter Audio</h2>
+                <audio id="audioPlayer" controls>
+                    <source src="Chapter 3- Taste the Dark .mp3" type="audio/mpeg">
+                    Your browser does not support the audio element.
+                </audio>
                 <div class="play-indicator">
                     <div class="pulse"></div>
                     <span>Ready to play</span>
                 </div>
             </div>
-            <button class="back-button" onclick="navigateToChapter('chapter-2')">
-                ← Previous Chapter
-            </button>
+            <div class="navigation-buttons">
+                <button class="back-button" onclick="navigateToChapter('chapter-2')">
+                    ← Previous Chapter
+                </button>
+                <button class="next-button" onclick="navigateToChapter('chapter-4')">
+                    Next Chapter →
+                </button>
+            </div>
         </div>
 
         <!-- Chapter 4 Content -->
         <div id="chapter-4" class="chapter-content">
             <h1 class="hero-title">Chocolate: The Listening Space</h1>
-            <h2 class="chapter-title">Remember Me, Please</h2>
+            <h2 class="chapter-title">Chapter 4: Remember Me, Please</h2>
             <p class="chapter-text">
                 Remember Me looks toward legacy and the future of Black queerness. It asks what remains after a life is lived and what messages we might hope to leave behind.
             </p>
@@ -549,6 +603,10 @@
             </p>
             <div class="audio-container">
                 <h2 class="audio-title">🎧 Listen to Chapter Audio</h2>
+                <audio id="audioPlayer" controls>
+                    <source src="Chapter 4 - Remember Me, Please. .mp3" type="audio/mpeg">
+                    Your browser does not support the audio element.
+                </audio>
                 <div class="play-indicator">
                     <div class="pulse"></div>
                     <span>Ready to play</span>
@@ -588,22 +646,29 @@
             updateView(NavigationState.CHAPTER_1);
         }
 
-        // Get previous chapter for back navigation
-        function getPreviousChapter(currentChapter) {
+        // Get next chapter for forward navigation
+        function getNextChapter(currentChapter) {
             const chapterOrder = ['chapter-1', 'chapter-2', 'chapter-3', 'chapter-4'];
             const currentIndex = chapterOrder.indexOf(currentChapter);
-            return currentIndex > 0 ? chapterOrder[currentIndex - 1] : null;
+            return currentIndex < chapterOrder.length - 1 ? chapterOrder[currentIndex + 1] : null;
         }
+
+        // Get previous chapter for back navigation
 
         // Switch audio source based on current view
         function switchAudio(chapterId) {
             const audioSource = audioFiles[chapterId];
+            // Find the audio element in the current chapter
+            const currentChapterElement = document.getElementById(chapterId);
+            const audioPlayer = currentChapterElement ? currentChapterElement.querySelector('.audio-player') : null;
+            
             if (audioSource && audioPlayer) {
                 // Stop current audio
                 audioPlayer.pause();
                 audioPlayer.currentTime = 0;
                 
                 // Update play indicator to loading state
+                const playIndicator = currentChapterElement.querySelector('.play-indicator span');
                 if (playIndicator) {
                     playIndicator.textContent = 'Loading...';
                 }
@@ -636,6 +701,7 @@
                 if (audioPlayer && audioFiles['chapter-1']) {
                     audioPlayer.src = audioFiles['chapter-1'];
                     audioPlayer.load();
+                    const playIndicator = currentChapterElement.querySelector('.play-indicator span');
                     if (playIndicator) {
                         playIndicator.textContent = 'Default audio loaded';
                     }
