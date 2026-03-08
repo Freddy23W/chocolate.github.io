@@ -521,7 +521,6 @@
                 </audio>
                 <div class="play-indicator">
                     <div class="pulse"></div>
-                    <span>Ready to play</span>
                 </div>
             </div>
             <button class="next-button" onclick="navigateToChapter('chapter-2')">
@@ -547,7 +546,6 @@
                 </audio>
                 <div class="play-indicator">
                     <div class="pulse"></div>
-                    <span>Ready to play</span>
                 </div>
             </div>
             <div class="navigation-buttons">
@@ -578,7 +576,6 @@
                 </audio>
                 <div class="play-indicator">
                     <div class="pulse"></div>
-                    <span>Ready to play</span>
                 </div>
             </div>
             <div class="navigation-buttons">
@@ -609,7 +606,6 @@
                 </audio>
                 <div class="play-indicator">
                     <div class="pulse"></div>
-                    <span>Ready to play</span>
                 </div>
             </div>
             <button class="back-button" onclick="navigateToChapter('chapter-3')">
@@ -637,8 +633,6 @@
 
         let currentView = NavigationState.CHAPTER_1;
         const chapterSelector = document.getElementById('chapterSelector');
-        const audioPlayer = document.getElementById('audioPlayer');
-        const playIndicator = document.querySelector('.play-indicator span');
 
         // Initialize navigation
         function initializeNavigation() {
@@ -660,39 +654,16 @@
             const audioSource = audioFiles[chapterId];
             // Find the audio element in the current chapter
             const currentChapterElement = document.getElementById(chapterId);
-            const audioPlayer = currentChapterElement ? currentChapterElement.querySelector('.audio-player') : null;
+            const audioPlayer = currentChapterElement ? currentChapterElement.querySelector('audio') : null;
             
             if (audioSource && audioPlayer) {
                 // Stop current audio
                 audioPlayer.pause();
                 audioPlayer.currentTime = 0;
                 
-                // Update play indicator to loading state
-                const playIndicator = currentChapterElement.querySelector('.play-indicator span');
-                if (playIndicator) {
-                    playIndicator.textContent = 'Loading...';
-                }
-                
                 // Update audio source
                 audioPlayer.src = audioSource;
                 audioPlayer.load(); // Reload with new source
-                
-                // Add loading event listener
-                audioPlayer.addEventListener('canplay', function handleCanPlay() {
-                    if (playIndicator) {
-                        playIndicator.textContent = 'Ready to play';
-                    }
-                    audioPlayer.removeEventListener('canplay', handleCanPlay);
-                }, { once: true });
-                
-                // Add error handling
-                audioPlayer.addEventListener('error', function handleError() {
-                    console.error(`Failed to load audio: ${audioSource}`);
-                    if (playIndicator) {
-                        playIndicator.textContent = 'Audio loading failed';
-                    }
-                    audioPlayer.removeEventListener('error', handleError);
-                }, { once: true });
                 
                 console.log(`Switched to audio: ${audioSource}`);
             } else {
@@ -701,10 +672,6 @@
                 if (audioPlayer && audioFiles['chapter-1']) {
                     audioPlayer.src = audioFiles['chapter-1'];
                     audioPlayer.load();
-                    const playIndicator = currentChapterElement.querySelector('.play-indicator span');
-                    if (playIndicator) {
-                        playIndicator.textContent = 'Default audio loaded';
-                    }
                 }
             }
         }
@@ -783,24 +750,18 @@
 
         // Audio autoplay functionality
         function attemptAutoplay() {
+            const currentChapterElement = document.getElementById(currentView);
+            const audioPlayer = currentChapterElement ? currentChapterElement.querySelector('audio') : null;
+            
+            if (!audioPlayer) return;
+            
             audioPlayer.play().then(() => {
                 console.log('Audio autoplay started successfully');
-                if (playIndicator) {
-                    playIndicator.textContent = 'Now playing';
-                }
             }).catch(error => {
                 console.log('Autoplay was prevented:', error);
-                // Show a user-friendly message if autoplay is blocked
-                if (playIndicator) {
-                    playIndicator.textContent = 'Tap to play';
-                }
-                
                 // Add click listener to start playback on user interaction
                 document.addEventListener('click', function playOnce() {
                     audioPlayer.play();
-                    if (playIndicator) {
-                        playIndicator.textContent = 'Now playing';
-                    }
                     document.removeEventListener('click', playOnce);
                 }, { once: true });
             });
@@ -812,18 +773,19 @@
             handleBrowserNavigation(); // Handle initial hash
             // Autoplay disabled - user must manually start audio
             
-            // Add audio event listeners for manual play/pause
-            audioPlayer.addEventListener('play', () => {
-                if (playIndicator) {
-                    playIndicator.textContent = 'Now playing';
-                }
-            });
+            // Audio event listeners for manual play/pause
+            const currentChapterElement = document.getElementById(currentView);
+            const audioPlayer = currentChapterElement ? currentChapterElement.querySelector('audio') : null;
             
-            audioPlayer.addEventListener('pause', () => {
-                if (playIndicator) {
-                    playIndicator.textContent = 'Ready to play';
-                }
-            });
+            if (audioPlayer) {
+                audioPlayer.addEventListener('play', () => {
+                    console.log('Audio started playing');
+                });
+                
+                audioPlayer.addEventListener('pause', () => {
+                    console.log('Audio paused');
+                });
+            }
         });
 
         // Handle browser back/forward
