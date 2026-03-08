@@ -13,7 +13,7 @@
 
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: linear-gradient(135deg, #3D2314 0%, #6B4423 50%, #8B5A3C 100%);
             min-height: 100vh;
             display: flex;
             align-items: center;
@@ -43,8 +43,8 @@
         }
 
         @keyframes glow {
-            from { text-shadow: 0 0 30px rgba(255,255,255,0.3); }
-            to { text-shadow: 0 0 40px rgba(255,255,255,0.5), 0 0 50px rgba(255,255,255,0.3); }
+            from { text-shadow: 0 0 20px rgba(255,255,255,0.4); }
+            to { text-shadow: 0 0 30px rgba(255,255,255,0.6), 0 0 40px rgba(255,255,255,0.4); }
         }
 
         .subtitle {
@@ -56,13 +56,13 @@
         }
 
         .audio-container {
-            background: rgba(255, 255, 255, 0.1);
+            background: rgba(255, 255, 255, 0.15);
             backdrop-filter: blur(10px);
             border-radius: 20px;
             padding: 2rem;
             margin: 2rem 0;
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
         }
 
         .audio-title {
@@ -80,7 +80,7 @@
         }
 
         audio::-webkit-media-controls-panel {
-            background-color: rgba(255, 255, 255, 0.2);
+            background-color: rgba(255, 255, 255, 0.25);
             border-radius: 25px;
         }
 
@@ -97,7 +97,7 @@
         .shape {
             position: absolute;
             border-radius: 50%;
-            background: rgba(255, 255, 255, 0.1);
+            background: rgba(255, 255, 255, 0.08);
             animation: float 20s infinite ease-in-out;
         }
 
@@ -189,9 +189,9 @@
             max-width: 300px;
             padding: 1rem;
             font-size: 1.1rem;
-            background: rgba(255, 255, 255, 0.15);
+            background: rgba(255, 255, 255, 0.2);
             backdrop-filter: blur(10px);
-            border: 2px solid rgba(255, 255, 255, 0.3);
+            border: 2px solid rgba(255, 255, 255, 0.4);
             border-radius: 15px;
             color: white;
             outline: none;
@@ -200,31 +200,31 @@
         }
 
         .chapter-dropdown select:hover {
-            background: rgba(255, 255, 255, 0.25);
-            border-color: rgba(255, 255, 255, 0.5);
+            background: rgba(255, 255, 255, 0.3);
+            border-color: rgba(255, 255, 255, 0.6);
             transform: translateY(-2px);
         }
 
         .chapter-dropdown select:focus {
-            border-color: rgba(255, 255, 255, 0.7);
-            box-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
+            border-color: rgba(255, 255, 255, 0.8);
+            box-shadow: 0 0 25px rgba(255, 255, 255, 0.4);
         }
 
         .chapter-dropdown select option {
-            background: #667eea;
+            background: #6B4423;
             color: white;
             padding: 1rem;
         }
 
         .chapter-content {
             display: none;
-            background: rgba(255, 255, 255, 0.1);
+            background: rgba(255, 255, 255, 0.15);
             backdrop-filter: blur(10px);
             border-radius: 20px;
             padding: 2rem;
             margin: 2rem 0;
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
             animation: fadeIn 0.5s ease-in-out;
         }
 
@@ -254,9 +254,9 @@
             align-items: center;
             gap: 0.5rem;
             padding: 0.8rem 1.5rem;
-            background: rgba(255, 255, 255, 0.2);
+            background: rgba(255, 255, 255, 0.25);
             backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.4);
             border-radius: 25px;
             color: white;
             text-decoration: none;
@@ -267,9 +267,9 @@
         }
 
         .back-button:hover {
-            background: rgba(255, 255, 255, 0.3);
+            background: rgba(255, 255, 255, 0.35);
             transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
         }
 
         @keyframes fadeIn {
@@ -304,10 +304,19 @@
                 font-size: 1rem;
                 padding: 0.8rem;
                 max-width: 250px;
+                background: rgba(255, 255, 255, 0.25);
+                border: 2px solid rgba(255, 255, 255, 0.5);
+            }
+
+            .chapter-dropdown select:hover {
+                background: rgba(255, 255, 255, 0.3);
+                border-color: rgba(255, 255, 255, 0.6);
             }
 
             .chapter-content {
                 padding: 1.5rem;
+                background: rgba(255, 255, 255, 0.2);
+                border: 1px solid rgba(255, 255, 255, 0.4);
             }
 
             .chapter-title {
@@ -316,6 +325,17 @@
 
             .chapter-text {
                 font-size: 1rem;
+            }
+
+            .back-button {
+                padding: 0.7rem 1.2rem;
+                font-size: 0.9rem;
+                background: rgba(255, 255, 255, 0.3);
+                border: 1px solid rgba(255, 255, 255, 0.5);
+            }
+
+            .back-button:hover {
+                background: rgba(255, 255, 255, 0.4);
             }
         }
     </style>
