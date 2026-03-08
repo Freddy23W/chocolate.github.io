@@ -16,7 +16,7 @@
 - **P2.2**: Implement chapter dropdown selection ✅
 - **P2.3**: Add text content for each chapter ✅
 - **P2.4**: Mobile-first UI optimization ✅
-- **P2.5**: Audio management for multiple chapters (placeholder)
+- **P2.5**: Audio management for multiple chapters (placeholder) ✅
 - **P2.6**: Navigation state management ✅
 - **P2.7**: Content management workflow (pending)
 
@@ -24,7 +24,7 @@
 | Task ID | Title | Status | Folder |
 |---------|-------|--------|---------|
 | T-002 | Multi-chapter navigation design | done | orga/tasks/active/T-002-2025-03-05-chapter-navigation/ |
-| T-003 | Chapter content implementation | backlog | orga/tasks/active/T-003-YYYY-MM-DD-content-implementation/ |
+| T-003 | Chapter content implementation | done | orga/tasks/active/T-003-2025-03-08-content-implementation/ |
 | T-004 | Mobile UI optimization | backlog | orga/tasks/active/T-004-YYYY-MM-DD-mobile-optimization/ |
 
 ## Phase 3: Visual & Content Enhancement (Current)
@@ -41,12 +41,18 @@
 | T-006 | Chapter content integration | backlog | orga/tasks/active/T-006-YYYY-MM-DD-content-integration/ |
 | T-007 | GitHub Pages deployment | backlog | orga/tasks/active/T-007-YYYY-MM-DD-github-deployment/ |
 
-## Phase 4: Production Ready (Future)
-- **P4.1**: Performance optimization
-- **P4.2**: Accessibility enhancements
-- **P4.3**: Cross-browser testing
-- **P4.4**: Analytics integration (optional)
-- **P4.5**: Content updates workflow
+## Phase 4: Post-Deployment Audio Enhancement (Future)
+- **P4.1**: Add chapter-specific audio files
+- **P4.2**: Audio file optimization and loading
+- **P4.3**: Audio switching between chapters
+- **P4.4**: Performance optimization
+- **P4.5**: Accessibility enhancements
+
+### Phase 4 Tasks
+| Task ID | Title | Status | Folder |
+|---------|-------|--------|---------|
+| T-008 | Chapter-specific audio files | future | orga/tasks/future/T-008-YYYY-MM-DD-chapter-audio/ |
+| T-009 | Audio optimization | future | orga/tasks/future/T-009-YYYY-MM-DD-audio-optimization/ |
 
 ## Milestones
 
@@ -70,22 +76,25 @@
 - Real chapter content from texts.txt
 - GitHub Pages deployment
 - Enhanced mobile experience
+- Single audio file (Episode 1) as placeholder
 
-### Version 1.2 (Enhanced)
-- Performance optimization
-- Accessibility improvements
-- Content management workflow
-- Analytics (if needed)
+### Version 1.2 (Audio Enhancement) - Future
+- Chapter-specific audio files
+- Audio switching between chapters
+- Audio loading optimization
+- Performance improvements
 
 ## Dependencies
 - None external (self-contained)
 - GitHub Pages hosting
 - Repository: https://github.com/Freddy23W/chocolate.github.io.git
-- Audio files for 4 chapters
+- Current audio file: Episode 1 (placeholder)
 - texts.txt content for chapters
+- Future: Audio files for 4 chapters
 
 ## Risk assessment
 - **Low risk**: Color scheme changes
 - **Low risk**: Content integration
 - **Medium risk**: GitHub Pages deployment setup
+- **Low risk**: Placeholder audio approach
 - **Mitigation**: Step-by-step deployment, testing at each stage
