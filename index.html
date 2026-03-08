@@ -272,6 +272,55 @@
             box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
         }
 
+        .play-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.8rem 1.2rem;
+            background: rgba(255, 255, 255, 0.3);
+            backdrop-filter: blur(10px);
+            border: 2px solid rgba(255, 255, 255, 0.5);
+            border-radius: 25px;
+            color: white;
+            text-decoration: none;
+            font-size: 1rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            min-height: 44px; /* Touch target size */
+            margin: 1rem 0;
+        }
+
+        .play-button:hover {
+            background: rgba(255, 255, 255, 0.4);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .play-button.playing {
+            background: rgba(76, 175, 76, 0.8);
+            border-color: rgba(76, 175, 76, 0.9);
+        }
+
+        .play-button.paused {
+            background: rgba(255, 255, 255, 0.3);
+            border-color: rgba(255, 255, 255, 0.5);
+        }
+
+        .play-indicator-dot {
+            display: inline-block;
+            width: 8px;
+            height: 8px;
+            background: #4ade80;
+            border-radius: 50%;
+            margin-right: 0.5rem;
+            animation: pulse 1.5s infinite;
+        }
+
+        .play-indicator-dot.hidden {
+            display: none;
+        }
+
         @keyframes fadeIn {
             from {
                 opacity: 0;
@@ -337,6 +386,17 @@
             .back-button:hover {
                 background: rgba(255, 255, 255, 0.4);
             }
+
+            .play-button {
+                padding: 0.7rem 1.2rem;
+                font-size: 0.9rem;
+                background: rgba(255, 255, 255, 0.3);
+                border: 2px solid rgba(255, 255, 255, 0.5);
+            }
+
+            .play-button:hover {
+                background: rgba(255, 255, 255, 0.4);
+            }
         }
     </style>
 </head>
@@ -387,6 +447,10 @@
             <p class="chapter-text">
                 At the same time, it is a promise—to protect, to nurture, and to remain present through the uncertainties ahead. The chapter extends beyond the self, reaching toward future generations and the longing to one day guide children through the world with care, love, and understanding.
             </p>
+            <button class="play-button paused" id="playButton-1" onclick="toggleChapterAudio('chapter-1')">
+                <span class="play-indicator-dot hidden" id="indicator-1"></span>
+                ▶️ Play Chapter Audio
+            </button>
             <button class="back-button" onclick="navigateToChapter('landing')">
                 ← Back to Festival Home
             </button>
@@ -401,6 +465,10 @@
             <p class="chapter-text">
                 Archival voices from influential thinkers and activists such as Angela Davis, Bobby Seale, Audre Lorde, and Kwame Ture echo through the chapter. Their words serve as both historical memory and a reminder that the systems shaping these experiences continue to evolve rather than disappear.
             </p>
+            <button class="play-button paused" id="playButton-2" onclick="toggleChapterAudio('chapter-2')">
+                <span class="play-indicator-dot hidden" id="indicator-2"></span>
+                ▶️ Play Chapter Audio
+            </button>
             <button class="back-button" onclick="navigateToChapter('landing')">
                 ← Back to Festival Home
             </button>
@@ -415,6 +483,10 @@
             <p class="chapter-text">
                 The chapter explores how Black queer individuals often navigate attraction alongside fetishisation, validation alongside microaggressions. Within this complexity, the work asks what it means to reclaim the body—not as fantasy or projection, but as a site of autonomy, pleasure, and self-definition.
             </p>
+            <button class="play-button paused" id="playButton-3" onclick="toggleChapterAudio('chapter-3')">
+                <span class="play-indicator-dot hidden" id="indicator-3"></span>
+                ▶️ Play Chapter Audio
+            </button>
             <button class="back-button" onclick="navigateToChapter('landing')">
                 ← Back to Festival Home
             </button>
@@ -429,6 +501,10 @@
             <p class="chapter-text">
                 Rather than focusing on endings, the chapter imagines remembrance as a collective act—carried through community, care, and shared memory. It offers a vision rooted in hope, love, and understanding, inviting future generations to nurture and continue the possibilities created before them.
             </p>
+            <button class="play-button paused" id="playButton-4" onclick="toggleChapterAudio('chapter-4')">
+                <span class="play-indicator-dot hidden" id="indicator-4"></span>
+                ▶️ Play Chapter Audio
+            </button>
             <button class="back-button" onclick="navigateToChapter('landing')">
                 ← Back to Festival Home
             </button>
@@ -592,6 +668,83 @@
             if (event.key === 'Escape' && currentView !== NavigationState.LANDING) {
                 navigateToChapter(NavigationState.LANDING);
             }
+        });
+
+        // Audio control functions for chapter play buttons
+        function toggleChapterAudio(chapterId) {
+            const audio = document.getElementById('audioPlayer');
+            const playButton = document.getElementById(`playButton-${chapterId.split('-')[1]}`);
+            const indicator = document.getElementById(`indicator-${chapterId.split('-')[1]}`);
+            
+            if (audio.paused) {
+                // Start playing
+                audio.play().then(() => {
+                    updatePlayButtonState(playButton, indicator, 'playing');
+                }).catch(error => {
+                    console.error('Error playing audio:', error);
+                });
+            } else {
+                // Pause playing
+                audio.pause();
+                updatePlayButtonState(playButton, indicator, 'paused');
+            }
+        }
+
+        function updatePlayButtonState(playButton, indicator, state) {
+            // Update all play buttons to paused state first
+            const allPlayButtons = document.querySelectorAll('.play-button');
+            const allIndicators = document.querySelectorAll('.play-indicator-dot');
+            
+            allPlayButtons.forEach(button => {
+                button.classList.remove('playing');
+                button.classList.add('paused');
+                button.innerHTML = button.innerHTML.replace('⏸️ Pause Chapter Audio', '▶️ Play Chapter Audio');
+            });
+            
+            allIndicators.forEach(dot => {
+                dot.classList.add('hidden');
+            });
+            
+            // Update the current button
+            if (state === 'playing') {
+                playButton.classList.remove('paused');
+                playButton.classList.add('playing');
+                playButton.innerHTML = playButton.innerHTML.replace('▶️ Play Chapter Audio', '⏸️ Pause Chapter Audio');
+                indicator.classList.remove('hidden');
+            } else {
+                playButton.classList.remove('playing');
+                playButton.classList.add('paused');
+                playButton.innerHTML = playButton.innerHTML.replace('⏸️ Pause Chapter Audio', '▶️ Play Chapter Audio');
+                indicator.classList.add('hidden');
+            }
+        }
+
+        // Update play buttons when audio state changes
+        audioPlayer.addEventListener('play', () => {
+            // Find the currently visible play button and update it
+            const visibleChapter = document.querySelector('.chapter-content:not(.hidden)');
+            if (visibleChapter) {
+                const chapterId = visibleChapter.id.split('-')[1];
+                const playButton = document.getElementById(`playButton-${chapterId}`);
+                const indicator = document.getElementById(`indicator-${chapterId}`);
+                updatePlayButtonState(playButton, indicator, 'playing');
+            }
+        });
+
+        audioPlayer.addEventListener('pause', () => {
+            // Reset all play buttons to paused state
+            const allPlayButtons = document.querySelectorAll('.play-button');
+            const allIndicators = document.querySelectorAll('.play-indicator-dot');
+            
+            allPlayButtons.forEach(button => {
+                button.classList.remove('playing');
+                button.classList.add('paused');
+                button.innerHTML = button.innerHTML.replace('⏸️ Pause Chapter Audio', '▶️ Play Chapter Audio');
+            });
+            
+            allIndicators.forEach(dot => {
+                dot.classList.add('hidden');
+            });
         });
     </script>
 </body>
