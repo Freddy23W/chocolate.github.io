@@ -482,13 +482,13 @@
             
             <div class="audio-container">
                 <h2 class="audio-title">🎧 Listen to Our Story</h2>
-                <audio id="audioPlayer" controls autoplay>
+                <audio id="audioPlayer" controls>
                     <source src="Chocolate - The Podast Ep.1 (Unsweetend Chocolate) .mp3" type="audio/mpeg">
                     Your browser does not support the audio element.
                 </audio>
                 <div class="play-indicator">
                     <div class="pulse"></div>
-                    <span>Now playing</span>
+                    <span>Ready to play</span>
                 </div>
             </div>
         </div>
@@ -677,9 +677,9 @@
             landingView.classList.remove('hidden');
             // Reset audio when returning to landing page
             audioPlayer.currentTime = 0;
-            // Resume audio if it was paused
-            if (audioPlayer.paused) {
-                attemptAutoplay();
+            // Do not autoplay - user must manually start audio
+            if (playIndicator) {
+                playIndicator.textContent = 'Ready to play';
             }
         }
 
@@ -736,7 +736,20 @@
         window.addEventListener('load', () => {
             initializeNavigation();
             handleBrowserNavigation(); // Handle initial hash
-            attemptAutoplay();
+            // Autoplay disabled - user must manually start audio
+            
+            // Add audio event listeners for manual play/pause
+            audioPlayer.addEventListener('play', () => {
+                if (playIndicator) {
+                    playIndicator.textContent = 'Now playing';
+                }
+            });
+            
+            audioPlayer.addEventListener('pause', () => {
+                if (playIndicator) {
+                    playIndicator.textContent = 'Ready to play';
+                }
+            });
         });
 
         // Handle browser back/forward
@@ -745,10 +758,10 @@
         // Handle hash change
         window.addEventListener('hashchange', handleBrowserNavigation);
 
-        // Also try autoplay on visibility change (in case tab becomes active)
+        // Handle visibility change (autoplay disabled)
         document.addEventListener('visibilitychange', () => {
             if (!document.hidden && currentView === NavigationState.LANDING && audioPlayer.paused) {
-                attemptAutoplay();
+                // Autoplay disabled - user must manually start audio
             }
         });
 
