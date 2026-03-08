@@ -294,18 +294,37 @@
         @media (max-width: 600px) {
             .container {
                 padding: 1rem;
+                max-width: 100%;
+            }
+            
+            .hero-title {
+                font-size: 2rem;
+                margin-bottom: 1rem;
+            }
+            
+            .subtitle {
+                font-size: 1.1rem;
+                margin-bottom: 1.5rem;
             }
             
             .audio-container {
                 padding: 1.5rem;
+                margin: 1.5rem 0;
+            }
+            
+            .audio-title {
+                font-size: 1.2rem;
+                margin-bottom: 1rem;
             }
 
             .chapter-dropdown select {
                 font-size: 1rem;
-                padding: 0.8rem;
-                max-width: 250px;
+                padding: 1rem;
+                max-width: 280px;
+                min-height: 48px; /* Touch target size */
                 background: rgba(255, 255, 255, 0.25);
                 border: 2px solid rgba(255, 255, 255, 0.5);
+                border-radius: 15px;
             }
 
             .chapter-dropdown select:hover {
@@ -313,29 +332,110 @@
                 border-color: rgba(255, 255, 255, 0.6);
             }
 
+            .chapter-dropdown select:focus {
+                border-color: rgba(255, 255, 255, 0.8);
+                box-shadow: 0 0 20px rgba(255, 255, 255, 0.4);
+                outline: none;
+            }
+
             .chapter-content {
                 padding: 1.5rem;
                 background: rgba(255, 255, 255, 0.2);
                 border: 1px solid rgba(255, 255, 255, 0.4);
+                margin: 1rem 0;
             }
 
             .chapter-title {
-                font-size: 1.5rem;
+                font-size: 1.8rem;
+                margin-bottom: 1rem;
+                line-height: 1.2;
             }
 
             .chapter-text {
-                font-size: 1rem;
+                font-size: 1.05rem;
+                line-height: 1.6;
+                margin-bottom: 1.5rem;
             }
 
             .back-button {
-                padding: 0.7rem 1.2rem;
-                font-size: 0.9rem;
+                padding: 0.8rem 1.5rem;
+                font-size: 1rem;
+                min-height: 44px; /* Touch target size */
                 background: rgba(255, 255, 255, 0.3);
                 border: 1px solid rgba(255, 255, 255, 0.5);
+                border-radius: 25px;
+                margin-top: 1rem;
             }
 
             .back-button:hover {
                 background: rgba(255, 255, 255, 0.4);
+            }
+
+            /* Mobile audio controls optimization */
+            audio {
+                width: 100%;
+                max-width: 300px;
+                height: 40px;
+            }
+
+            /* Better spacing for mobile */
+            .landing-view {
+                padding: 1rem 0;
+            }
+
+            /* Touch-optimized floating shapes */
+            .shape {
+                width: 50px;
+                height: 50px;
+            }
+
+            /* Mobile performance optimizations */
+            .hero-title {
+                animation: none; /* Disable glow animation on mobile */
+                text-shadow: 0 0 20px rgba(255,255,255,0.3);
+            }
+
+            /* Reduce animations for better performance */
+            * {
+                transition-duration: 0.2s; /* Faster transitions on mobile */
+            }
+
+            /* Optimize backdrop-filter for mobile */
+            .audio-container,
+            .chapter-content {
+                backdrop-filter: blur(5px); /* Reduced blur for performance */
+            }
+
+            /* Optimize for smaller screens */
+            @media (max-width: 480px) {
+                .hero-title {
+                    font-size: 1.8rem;
+                }
+                
+                .subtitle {
+                    font-size: 1rem;
+                }
+                
+                .chapter-dropdown select {
+                    max-width: 250px;
+                    padding: 0.8rem;
+                }
+                
+                .audio-container {
+                    padding: 1rem;
+                }
+                
+                .chapter-content {
+                    padding: 1rem;
+                }
+                
+                .chapter-title {
+                    font-size: 1.6rem;
+                }
+                
+                .chapter-text {
+                    font-size: 1rem;
+                }
             }
         }
     </style>

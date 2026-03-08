@@ -1,11 +1,11 @@
 # T-004: Mobile UI Optimization
 
-Status: backlog
+Status: active
 Created: 2025-03-08
 
 ## Goal
 
-Optimize the multi-chapter website specifically for mobile phone usage, ensuring the dropdown navigation and content display work perfectly on small screens with the new chocolate theme.
+Optimize the multi-chapter website specifically for mobile phone usage, ensuring the dropdown navigation and content display work perfectly on small screens with the chocolate theme and real content.
 
 ## Scope
 
@@ -15,7 +15,8 @@ In:
 - Mobile typography and spacing optimization
 - Mobile performance optimization
 - Cross-device mobile testing (iOS/Android)
-- Integration with chocolate color scheme (T-005)
+- Integration with chocolate color scheme (T-005 completed)
+- Audio container optimization for mobile (T-010 completed)
 
 Out:
 - Desktop-specific optimizations (nice-to-have, not required)
@@ -32,6 +33,8 @@ Out:
 - AC5: Consistent experience across iOS/Android
 - AC6: Chocolate theme works well on mobile devices
 - AC7: Chapter content displays properly on mobile screens
+- AC8: Audio containers are mobile-friendly
+- AC9: All interactive elements have proper touch targets
 
 ## Links
 
@@ -45,12 +48,14 @@ Out:
 
 - T-002 (completed navigation design)
 - T-003 (completed content implementation)
-- T-005 (chocolate theme implementation) - should be done before or with T-004
-- T-006 (text content integration) - should be done before or with T-004
+- T-005 (completed chocolate theme implementation)
+- T-006 (completed content integration)
+- T-010 (completed audio controls)
 
 ## Open questions / risks
 
-- Mobile browser compatibility with new chocolate theme
+- Mobile browser compatibility with chocolate theme
 - Touch target sizes with new design elements
 - Text readability with brown backgrounds and white text
 - Performance on older mobile devices
+- Audio container responsiveness on mobile
