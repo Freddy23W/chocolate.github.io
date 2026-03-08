@@ -28,7 +28,7 @@
 | T-004 | Mobile UI optimization | backlog | orga/tasks/active/T-004-YYYY-MM-DD-mobile-optimization/ |
 
 ## Phase 3: Visual & Content Enhancement (Current)
-- **P3.1**: Implement chocolate color scheme with white contrast
+- **P3.1**: Implement chocolate color scheme with white contrast ✅
 - **P3.2**: Update chapter content with texts.txt content
 - **P3.3**: GitHub Pages deployment setup
 - **P3.4**: Content integration and testing
@@ -37,22 +37,30 @@
 ### Phase 3 Tasks
 | Task ID | Title | Status | Folder |
 |---------|-------|--------|---------|
-| T-005 | Chocolate color scheme implementation | backlog | orga/tasks/active/T-005-YYYY-MM-DD-chocolate-theme/ |
+| T-005 | Chocolate color scheme implementation | done | orga/tasks/active/T-005-2025-03-08-chocolate-theme/ |
 | T-006 | Chapter content integration | backlog | orga/tasks/active/T-006-YYYY-MM-DD-content-integration/ |
 | T-007 | GitHub Pages deployment | backlog | orga/tasks/active/T-007-YYYY-MM-DD-github-deployment/ |
 
-## Phase 4: Post-Deployment Audio Enhancement (Future)
+## Phase 4: Audio Enhancement (Current)
 - **P4.1**: Add chapter-specific audio files
-- **P4.2**: Audio file optimization and loading
+- **P4.2**: Add play buttons for each chapter
 - **P4.3**: Audio switching between chapters
-- **P4.4**: Performance optimization
-- **P4.5**: Accessibility enhancements
+- **P4.4**: Audio loading optimization
+- **P4.5**: Final mobile audio testing
 
 ### Phase 4 Tasks
 | Task ID | Title | Status | Folder |
 |---------|-------|--------|---------|
-| T-008 | Chapter-specific audio files | future | orga/tasks/future/T-008-YYYY-MM-DD-chapter-audio/ |
-| T-009 | Audio optimization | future | orga/tasks/future/T-009-YYYY-MM-DD-audio-optimization/ |
+| T-008 | Chapter-specific audio files | backlog | orga/tasks/future/T-008-YYYY-MM-DD-chapter-audio/ |
+| T-010 | Chapter audio play buttons | backlog | orga/tasks/active/T-010-YYYY-MM-DD-audio-play-buttons/ |
+| T-009 | Audio optimization | backlog | orga/tasks/future/T-009-YYYY-MM-DD-audio-optimization/ |
+
+## Phase 5: Production Ready (Future)
+- **P5.1**: Performance optimization
+- **P5.2**: Accessibility enhancements
+- **P5.3**: Cross-browser testing
+- **P5.4**: Analytics integration (optional)
+- **P5.5**: Content updates workflow
 
 ## Milestones
 

@@ -11,9 +11,12 @@
 - **FR-8**: Navigation back to landing page from any chapter ✅
 - **FR-9**: Chapter-specific audio files with autoplay (structure) ✅
 - **FR-10**: Mobile-optimized chapter selection interface ✅
-- **FR-11**: Chocolate color scheme with brown shades and white contrast
-- **FR-12**: Real chapter content from texts.txt file
+- **FR-11**: Chocolate color scheme with brown shades and white contrast ✅
+- **FR-12**: Real chapter content from texts.txt
 - **FR-13**: GitHub Pages deployment for public access
+- **FR-14**: Play/pause buttons for each chapter audio
+- **FR-15**: Individual audio control per chapter
+- **FR-16**: Visual feedback for audio playing/paused states
 
 ## Non-functional requirements
 - **NFR-1**: Page loads in under 3 seconds ✅
@@ -24,10 +27,13 @@
 - **NFR-6**: Smooth transitions between chapters ✅
 - **NFR-7**: Touch-friendly navigation on mobile devices ✅
 - **NFR-8**: Consistent performance across all chapters ✅
-- **NFR-9**: Chocolate color theme with accessibility compliance
-- **NFR-10**: High contrast between text and background for readability
-- **NFR-11**: Cross-browser compatibility with new color scheme
+- **NFR-9**: Chocolate color theme with accessibility compliance ✅
+- **NFR-10**: High contrast between text and background for readability ✅
+- **NFR-11**: Cross-browser compatibility with new color scheme ✅
 - **NFR-12**: Reliable deployment on GitHub Pages
+- **NFR-13**: Touch-friendly play buttons (44px minimum)
+- **NFR-14**: Audio state management across chapters
+- **NFR-15**: Mobile audio playback optimization
 
 ## Acceptance criteria
 - AC1: Scanning QR code opens a beautiful landing page ✅
@@ -43,3 +49,6 @@
 - AC11: Chocolate brown color scheme with white text ✅
 - AC12: Content is readable and properly formatted ✅
 - AC13: Website is deployed and accessible via GitHub Pages ✅
+- AC14: Each chapter has a visible play/pause button
+- AC15: Play buttons are touch-friendly on mobile devices
+- AC16: Audio state is clearly visible (playing/paused)
