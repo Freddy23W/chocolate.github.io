@@ -27,6 +27,7 @@
             max-width: 800px;
             position: relative;
             z-index: 10;
+            margin: 0 auto;
         }
 
         .hero-title {
@@ -674,6 +675,8 @@
         // Show landing view
         function showLandingView() {
             landingView.classList.remove('hidden');
+            // Reset audio when returning to landing page
+            audioPlayer.currentTime = 0;
             // Resume audio if it was paused
             if (audioPlayer.paused) {
                 attemptAutoplay();
@@ -685,8 +688,12 @@
             const chapterElement = document.getElementById(chapterId);
             if (chapterElement) {
                 chapterElement.classList.add('active');
-                // Pause audio when viewing chapters (optional - can be changed)
-                // audioPlayer.pause();
+                // Stop audio when switching chapters to prevent multiple audio playing
+                audioPlayer.pause();
+                audioPlayer.currentTime = 0;
+                if (playIndicator) {
+                    playIndicator.textContent = 'Audio paused';
+                }
             }
         }
 
